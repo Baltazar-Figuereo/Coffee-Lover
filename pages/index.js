@@ -7,7 +7,17 @@ import Card from "../components/card";
 
 import coffeeStores from "../data/coffee-store.json";
 
-export default function Home() {
+export async function getStaticProps(context) {
+    // this is all server-side code.
+    console.log("Hi Static Props")
+    return {
+        props: {coffeeStores,}, // will be passed to the page component as props
+    }
+}
+
+export default function Home(props) {
+  // This is client side code.
+  console.log(props)
   const handleOnBannerBtnClick = () => {
       console.log("Hi Banner Button")
   }
@@ -30,9 +40,10 @@ export default function Home() {
         </div>
           <div className={styles.cardLayout}>
               {
-                  coffeeStores.map(coffeeStores => {
+                  props.coffeeStores.map(coffeeStores => {
                       return (
                           <Card
+                              key={coffeeStores.id}
                               name={coffeeStores.name}
                               imgUrl={coffeeStores.imgUrl}
                               href={`/coffee-store/${coffeeStores.id}`}
