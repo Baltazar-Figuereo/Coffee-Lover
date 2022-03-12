@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const DyRoute = () => {
     const router = useRouter();
-    console.log("Router", router);
+    //console.log("Router", router);
 
     return (<div>Page {router.query.dyn}</div>);
 }
